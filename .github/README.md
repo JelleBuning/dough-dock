@@ -9,7 +9,7 @@
 
 <div align="center">
 
-<h1 align="center">DoughDock 🍕📲</h3>
+<h1 align="center">dough-dock 🍕📲</h3>
 
   <p align="center">
     The smart pizza dough calculator and social sharing app for every home pizzaiolo.
@@ -41,9 +41,9 @@
 
 ## About The Project
 
-**DoughDock** is a mobile application built for pizza enthusiasts who seek precision in their dough-making and a community to share their creations. It combines the utility of a professional tool with the fun of a social feed, all wrapped in a clean, dark-themed interface.
+**dough-dock** is a mobile application built for pizza enthusiasts who seek precision in their dough-making and a community to share their creations. It combines the utility of a professional tool with the fun of a social feed, all wrapped in a clean, dark-themed interface.
 
-> "DoughDock combines everything I’ve personally wanted when making pizza: a smart calculator, a planner, and a social sharing feed."
+> "dough-dock combines everything I’ve personally wanted when making pizza: a smart calculator, a planner, and a social sharing feed."
 
 The app is currently in development and aiming for release soon!
 
@@ -51,7 +51,7 @@ The app is currently in development and aiming for release soon!
 
 ### Features
 
-DoughDock is designed to be your indispensable companion in the pizza-making process, from calculating ingredients to sharing the final result.
+dough-dock is designed to be your indispensable companion in the pizza-making process, from calculating ingredients to sharing the final result.
 
 *   **🍞 Smart Dough Calculator:** Accurately calculate hydration percentage, adjust for desired servings, and instantly scale all ingredients for popular pizza styles.
 *   **🧀 Pizza Planner:** Get organized with suggested toppings, specific pizza styles (e.g., Neapolitan, New York), and a schedule for your dough-making process.
@@ -66,7 +66,7 @@ DoughDock is designed to be your indispensable companion in the pizza-making pro
 
 ## Getting Started
 
-DoughDock is an open-source project. If you wish to build the app from the source code, please follow the steps below.
+dough-dock is an open-source project. If you wish to build the app from the source code, please follow the steps below.
 
 ### Installation
 
@@ -74,11 +74,11 @@ This guide assumes you have the Flutter SDK and a suitable IDE (like VS Code or 
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/JelleBuning/doughdock.git](https://github.com/JelleBuning/doughdock.git)
+    git clone [https://github.com/JelleBuning/dough-dock.git](https://github.com/JelleBuning/dough-dock.git)
     ```
 2.  **Navigate to the project directory:**
     ```bash
-    cd doughdock
+    cd dough-dock
     ```
 3.  **Fetch dependencies:**
     ```bash
@@ -112,13 +112,13 @@ Distributed under the GNU Affero General Public License v3.0 License. See `LICEN
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-[contributors-shield]: https://img.shields.io/github/contributors/JelleBuning/doughdock.svg?style=for-the-badge
-[contributors-url]: https://github.com/JelleBuning/doughdock/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/JelleBuning/doughdock.svg?style=for-the-badge
-[forks-url]: https://github.com/JelleBuning/doughdock/network/members
-[stars-shield]: https://img.shields.io/github/stars/JelleBuning/doughdock.svg?style=for-the-badge
-[stars-url]: https://github.com/JelleBuning/doughdock/stargazers
-[issues-shield]: https://img.shields.io/github/issues/JelleBuning/doughdock.svg?style=for-the-badge
-[issues-url]: https://github.com/JelleBuning/doughdock/issues
-[license-shield]: https://img.shields.io/github/license/JelleBuning/doughdock.svg?style=for-the-badge
-[license-url]: https://github.com/JelleBuning/doughdock/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/JelleBuning/dough-dock.svg?style=for-the-badge
+[contributors-url]: https://github.com/JelleBuning/dough-dock/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/JelleBuning/dough-dock.svg?style=for-the-badge
+[forks-url]: https://github.com/JelleBuning/dough-dock/network/members
+[stars-shield]: https://img.shields.io/github/stars/JelleBuning/dough-dock.svg?style=for-the-badge
+[stars-url]: https://github.com/JelleBuning/dough-dock/stargazers
+[issues-shield]: https://img.shields.io/github/issues/JelleBuning/dough-dock.svg?style=for-the-badge
+[issues-url]: https://github.com/JelleBuning/dough-dock/issues
+[license-shield]: https://img.shields.io/github/license/JelleBuning/dough-dock.svg?style=for-the-badge
+[license-url]: https://github.com/JelleBuning/dough-dock/blob/master/LICENSE
