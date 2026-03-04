@@ -74,7 +74,7 @@ This guide assumes you have the Flutter SDK and a suitable IDE (like VS Code or 
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/your-username/doughdock.git](https://github.com/your-username/doughdock.git)
+    git clone [https://github.com/JelleBuning/doughdock.git](https://github.com/JelleBuning/doughdock.git)
     ```
 2.  **Navigate to the project directory:**
     ```bash
@@ -112,13 +112,13 @@ Distributed under the GNU Affero General Public License v3.0 License. See `LICEN
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-[contributors-shield]: https://img.shields.io/github/contributors/your-username/doughdock.svg?style=for-the-badge
-[contributors-url]: https://github.com/your-username/doughdock/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/your-username/doughdock.svg?style=for-the-badge
-[forks-url]: https://github.com/your-username/doughdock/network/members
-[stars-shield]: https://img.shields.io/github/stars/your-username/doughdock.svg?style=for-the-badge
-[stars-url]: https://github.com/your-username/doughdock/stargazers
-[issues-shield]: https://img.shields.io/github/issues/your-username/doughdock.svg?style=for-the-badge
-[issues-url]: https://github.com/your-username/doughdock/issues
-[license-shield]: https://img.shields.io/github/license/your-username/doughdock.svg?style=for-the-badge
-[license-url]: https://github.com/your-username/doughdock/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/JelleBuning/doughdock.svg?style=for-the-badge
+[contributors-url]: https://github.com/JelleBuning/doughdock/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/JelleBuning/doughdock.svg?style=for-the-badge
+[forks-url]: https://github.com/JelleBuning/doughdock/network/members
+[stars-shield]: https://img.shields.io/github/stars/JelleBuning/doughdock.svg?style=for-the-badge
+[stars-url]: https://github.com/JelleBuning/doughdock/stargazers
+[issues-shield]: https://img.shields.io/github/issues/JelleBuning/doughdock.svg?style=for-the-badge
+[issues-url]: https://github.com/JelleBuning/doughdock/issues
+[license-shield]: https://img.shields.io/github/license/JelleBuning/doughdock.svg?style=for-the-badge
+[license-url]: https://github.com/JelleBuning/doughdock/blob/master/LICENSE
