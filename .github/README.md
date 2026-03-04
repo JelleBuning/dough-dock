@@ -6,44 +6,41 @@
 [![Issues][issues-shield]][issues-url]
 [![License][license-shield]][license-url]
 
-
 <div align="center">
 
-<h1 align="center">dough-dock 🍕📲</h3>
+<h1 align="center">Dough dock 🍕📲</h3>
 
-  <p align="center">
-    The smart pizza dough calculator and social sharing app for every home pizzaiolo.
-  </p>
+  <p align="center">
+    The smart pizza dough calculator and planner for every home pizzaiolo.
+  </p>
 </div>
 
-
 <details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-  </ol>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
 </details>
-
 
 ## About The Project
 
-**dough-dock** is a mobile application built for pizza enthusiasts who seek precision in their dough-making and a community to share their creations. It combines the utility of a professional tool with the fun of a social feed, all wrapped in a clean, dark-themed interface.
+**Dough dock** is a mobile application built for pizza enthusiasts who seek precision in their dough-making. It provides the utility of a professional tool, allowing users to calculate, schedule, and perfect their recipes through a streamlined, intuitive interface.
 
-> "dough-dock combines everything I’ve personally wanted when making pizza: a smart calculator, a planner, and a social sharing feed."
+> "Dough dock combines everything I’ve personally wanted when making pizza: a smart calculator and a reliable planner."
 
 The app is currently in development and aiming for release soon!
 
@@ -51,22 +48,21 @@ The app is currently in development and aiming for release soon!
 
 ### Features
 
-dough-dock is designed to be your indispensable companion in the pizza-making process, from calculating ingredients to sharing the final result.
+Dough dock is designed to be your indispensable companion in the pizza-making process, ensuring technical accuracy from flour to oven.
 
-*   **🍞 Smart Dough Calculator:** Accurately calculate hydration percentage, adjust for desired servings, and instantly scale all ingredients for popular pizza styles.
-*   **🧀 Pizza Planner:** Get organized with suggested toppings, specific pizza styles (e.g., Neapolitan, New York), and a schedule for your dough-making process.
-*   **🌍 Social Sharing Feed:** Post and browse stunning pizza creations from other users, get inspiration, and share your own masterpieces with the community.
-*   **🌑 Dark-Themed Interface:** A clean, sleek, and intuitive dark-themed UI designed for focus and ease of use.
+* **🍞 Smart Dough Calculator:** Accurately calculate hydration percentage, adjust for desired servings, and instantly scale all ingredients for popular pizza styles.
+* **🧀 Pizza Planner:** Get organized with suggested toppings and specific pizza styles (e.g., Neapolitan, New York).
+* **⏱️ Precision Scheduling:** Generate a step-by-step timeline for your dough-making process, including bulk fermentation and proofing stages.
+* **📝 Custom Profiles:** Save and refine ingredient ratios for consistent results every bake.
 
 ### Built With
 
-*   [Flutter](https://flutter.dev/)
-*   [Dart](https://dart.dev/)
-
+* [Flutter](https://flutter.dev/)
+* [Dart](https://dart.dev/)
 
 ## Getting Started
 
-dough-dock is an open-source project. If you wish to build the app from the source code, please follow the steps below.
+Dough dock is an open-source project. If you wish to build the app from the source code, please follow the steps below.
 
 ### Installation
 
