@@ -1,85 +1,51 @@
+import 'dart:math';
 import 'package:dough_dock/core/enumerations/yeast_type.dart';
+import 'package:dough_dock/core/models/dough_config.dart';
 
-abstract final class DoughCalculator {
-  static double yeastRatio(YeastType yeastType) {
+class DoughCalculator {
+  const DoughCalculator();
+
+  static const double _targetDoughBallWeight = 250.0;
+  static const double _yeastConstant = 0.025;
+
+  double totalFlour(DoughConfig config) {
+    final double waterDecimal = config.waterPercentage / 100.0;
+    final double saltDecimal = config.saltPercentage / 100.0;
+
+    final double flourPerBall =
+        _targetDoughBallWeight / (1.0 + waterDecimal + saltDecimal);
+
+    return flourPerBall * config.amount;
+  }
+
+  double totalDough(DoughConfig config) =>
+      _targetDoughBallWeight * config.amount;
+
+  double totalWater(DoughConfig config) {
+    return totalFlour(config) * (config.waterPercentage / 100.0);
+  }
+
+  double totalSalt(DoughConfig config) {
+    return totalFlour(config) * (config.saltPercentage / 100.0);
+  }
+
+  double totalYeast(DoughConfig config) {
+    final double flour = totalFlour(config);
+
+    final tempFactor = exp(0.09 * (config.rtTemperatureCelsius - 20.0));
+    final percentage = _yeastConstant / (config.rtLeaveningHours * tempFactor);
+
+    return flour * percentage * _yeastMultiplier(config.yeastType);
+  }
+
+  double _yeastMultiplier(YeastType yeastType) {
     switch (yeastType) {
       case YeastType.fresh:
-        return 0.002;
-      case YeastType.dry:
-        return 0.00067;
-      case YeastType.sourdough:
-        return 0.10;
+        return 1.0;
+      case YeastType.activeDry:
+        return 0.5; // AVPN generally recommends 1:2 ratio for Active Dry
+      case YeastType.instant:
+        return 0.33; // 1:3 ratio for Instant
     }
-  }
-
-  static double totalDough(int amount, double weightPerPortionG) {
-    return amount * weightPerPortionG;
-  }
-
-  static double totalFlour({
-    required int amount,
-    required double weightPerPortionG,
-    required double waterPercentage,
-    required double saltPercentage,
-    required YeastType yeastType,
-  }) {
-    final dough = totalDough(amount, weightPerPortionG);
-    final ratioSum =
-        1.0 +
-        (waterPercentage / 100.0) +
-        (saltPercentage / 100.0) +
-        yeastRatio(yeastType);
-    return dough / ratioSum;
-  }
-
-  static double totalWater({
-    required int amount,
-    required double weightPerPortionG,
-    required double waterPercentage,
-    required double saltPercentage,
-    required YeastType yeastType,
-  }) {
-    return totalFlour(
-          amount: amount,
-          weightPerPortionG: weightPerPortionG,
-          waterPercentage: waterPercentage,
-          saltPercentage: saltPercentage,
-          yeastType: yeastType,
-        ) *
-        (waterPercentage / 100.0);
-  }
-
-  static double totalSalt({
-    required int amount,
-    required double weightPerPortionG,
-    required double waterPercentage,
-    required double saltPercentage,
-    required YeastType yeastType,
-  }) {
-    return totalFlour(
-          amount: amount,
-          weightPerPortionG: weightPerPortionG,
-          waterPercentage: waterPercentage,
-          saltPercentage: saltPercentage,
-          yeastType: yeastType,
-        ) *
-        (saltPercentage / 100.0);
-  }
-
-  static double totalYeast({
-    required int amount,
-    required double weightPerPortionG,
-    required double waterPercentage,
-    required double saltPercentage,
-    required YeastType yeastType,
-  }) {
-    return totalFlour(
-          amount: amount,
-          weightPerPortionG: weightPerPortionG,
-          waterPercentage: waterPercentage,
-          saltPercentage: saltPercentage,
-          yeastType: yeastType,
-        ) *
-        yeastRatio(yeastType);
   }
 }

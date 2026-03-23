@@ -1,1 +1,1 @@
-enum YeastType { fresh, dry, sourdough }
+enum YeastType { fresh, activeDry, instant }

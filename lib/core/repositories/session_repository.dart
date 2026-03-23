@@ -1,18 +1,21 @@
 import 'dart:collection';
 
 import 'package:dough_dock/core/models/dough_session.dart';
+import 'package:flutter/material.dart';
 
-class SessionRepository {
+class SessionRepository extends ChangeNotifier {
   final List<DoughSession> _sessions = [];
 
   UnmodifiableListView<DoughSession> get sessions =>
       UnmodifiableListView(_sessions);
 
-  void addSession(DoughSession session) {
+  Future<void> addSession(DoughSession session) async {
     _sessions.add(session);
+    notifyListeners();
   }
 
-  void removeSession(DoughSession session) {
+  Future<void> removeSession(DoughSession session) async {
     _sessions.remove(session);
+    notifyListeners();
   }
 }

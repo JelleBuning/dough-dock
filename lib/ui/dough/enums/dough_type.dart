@@ -4,7 +4,6 @@ extension DoughTypeExtension on DoughType {
   bool get active {
     switch (this) {
       case DoughType.neapolitan:
-      case DoughType.neapolitanPreferment:
         return true;
       default:
         return false;

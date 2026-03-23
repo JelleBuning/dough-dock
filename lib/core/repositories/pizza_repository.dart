@@ -2,77 +2,40 @@ import 'package:dough_dock/core/models/ingredient.dart';
 import 'package:dough_dock/core/models/pizza.dart';
 
 class PizzaRepository {
-  List<Pizza> fetchPizzas() {
-    return [
+  Future<List<Pizza>> fetchPizzas() async {
+    return const [
       Pizza(name: 'Margherita', ingredients: ['Tomato Sauce', 'Mozzarella']),
-      Pizza(
-        name: 'Marinara',
-        ingredients: ['Tomato Sauce', 'Garlic', 'Oregano'],
-      ),
+      Pizza(name: 'Marinara', ingredients: ['Tomato Sauce', 'Garlic', 'Oregano']),
       Pizza(
         name: 'Quattro Stagioni',
-        ingredients: [
-          'Tomato Sauce',
-          'Mozzarella',
-          'Artichokes',
-          'Ham',
-          'Mushrooms',
-          'Olives',
-        ],
+        ingredients: ['Tomato Sauce', 'Mozzarella', 'Artichokes', 'Ham', 'Mushrooms', 'Olives'],
       ),
-      Pizza(
-        name: 'Diavola',
-        ingredients: ['Tomato Sauce', 'Mozzarella', 'Spicy Salami'],
-      ),
+      Pizza(name: 'Diavola', ingredients: ['Tomato Sauce', 'Mozzarella', 'Spicy Salami']),
       Pizza(
         name: 'Quattro Formaggi',
-        ingredients: [
-          'Tomato Sauce',
-          'Mozzarella',
-          'Gorgonzola',
-          'Parmesan',
-          'Fontina',
-        ],
+        ingredients: ['Tomato Sauce', 'Mozzarella', 'Gorgonzola', 'Parmesan', 'Fontina'],
       ),
       Pizza(
         name: 'Napoli',
-        ingredients: [
-          'Tomato Sauce',
-          'Mozzarella',
-          'Anchovies',
-          'Capers',
-          'Olives',
-        ],
+        ingredients: ['Tomato Sauce', 'Mozzarella', 'Anchovies', 'Capers', 'Olives'],
       ),
-      Pizza(
-        name: 'Funghi',
-        ingredients: ['Tomato Sauce', 'Mozzarella', 'Mushrooms'],
-      ),
+      Pizza(name: 'Funghi', ingredients: ['Tomato Sauce', 'Mozzarella', 'Mushrooms']),
       Pizza(
         name: 'Prosciutto e Funghi',
         ingredients: ['Tomato Sauce', 'Mozzarella', 'Ham', 'Mushrooms'],
       ),
-      Pizza(
-        name: 'Salsiccia',
-        ingredients: ['Tomato Sauce', 'Mozzarella', 'Italian Sausage'],
-      ),
-      Pizza(
-        name: 'Frutti di Mare',
-        ingredients: ['Tomato Sauce', 'Mozzarella', 'Mixed Seafood'],
-      ),
+      Pizza(name: 'Salsiccia', ingredients: ['Tomato Sauce', 'Mozzarella', 'Italian Sausage']),
+      Pizza(name: 'Frutti di Mare', ingredients: ['Tomato Sauce', 'Mozzarella', 'Mixed Seafood']),
       Pizza(
         name: 'Ortolana',
         ingredients: ['Tomato Sauce', 'Mozzarella', 'Grilled Vegetables'],
       ),
-      Pizza(
-        name: 'Pugliese',
-        ingredients: ['Tomato Sauce', 'Mozzarella', 'Onions'],
-      ),
+      Pizza(name: 'Pugliese', ingredients: ['Tomato Sauce', 'Mozzarella', 'Onions']),
     ];
   }
 
-  List<Ingredient> fetchIngredients() {
-    return [
+  Future<List<Ingredient>> fetchIngredients() async {
+    return const [
       Ingredient(name: 'Tomato Sauce'),
       Ingredient(name: 'Mozzarella'),
       Ingredient(name: 'Mushrooms'),

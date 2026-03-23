@@ -1,8 +1,17 @@
+import 'package:dough_dock/core/models/dough_session.dart';
 import 'package:dough_dock/core/enumerations/yeast_type.dart';
+import 'package:dough_dock/core/repositories/pizza_repository.dart';
+import 'package:dough_dock/core/repositories/session_repository.dart';
+import 'package:dough_dock/core/services/dough_calculator.dart';
+import 'package:dough_dock/core/services/dough_planner.dart';
 import 'package:dough_dock/ui/core/main_page.dart';
 import 'package:dough_dock/ui/dough/dough_page.dart';
 import 'package:dough_dock/ui/dough/view_model/dough_view_model.dart';
 import 'package:dough_dock/ui/profile/profile_page.dart';
+import 'package:dough_dock/ui/sessions/detail/session_detail_page.dart';
+import 'package:dough_dock/ui/sessions/detail/view_model/session_detail_view_model.dart';
+import 'package:dough_dock/ui/sessions/sessions_page.dart';
+import 'package:dough_dock/ui/sessions/view_model/sessions_view_model.dart';
 import 'package:dough_dock/ui/toppings/toppings_page.dart';
 import 'package:dough_dock/ui/core/under_construction.dart';
 import 'package:dough_dock/routing/routes.dart';
@@ -19,14 +28,10 @@ class AppRouter {
     navigatorKey: _globalNavigatorKey,
     initialLocation: Routes.home.index,
     routes: <RouteBase>[
-      // Index redirect
       GoRoute(
         path: Routes.home.index,
-        redirect: (context, state) {
-          return Routes.home.dough; // homepage
-        },
+        redirect: (context, state) => Routes.home.dough,
       ),
-      // Routes
       StatefulShellRoute.indexedStack(
         parentNavigatorKey: _globalNavigatorKey,
         builder: (context, state, navigationShell) {
@@ -37,19 +42,42 @@ class AppRouter {
             routes: <RouteBase>[
               GoRoute(
                 path: Routes.home.dough,
-                builder:
-                    (context, state) => DoughPage(
-                      viewModel: DoughViewModel(
-                        amount: 4,
-                        weightPerPortionG: 250,
-                        waterPercentage: 60,
-                        saltPercentage: 2.5,
-                        yeastType: YeastType.fresh,
-                        rtLeaveningHours: 6,
-                        rtTemperatureCelsius: 20,
-                        sessionRepository: context.read(),
+                builder: (context, state) => ChangeNotifierProvider(
+                  create: (context) => DoughViewModel(
+                    amount: 4,
+                    yeastType: YeastType.fresh,
+                    rtLeaveningHours: 24,
+                    rtTemperatureCelsius: 20,
+                    sessionRepository: context.read<SessionRepository>(),
+                    calculator: context.read<DoughCalculator>(),
+                    planner: context.read<DoughPlanner>(),
+                  ),
+                  child: const DoughPage(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: <RouteBase>[
+              GoRoute(
+                path: Routes.home.sessions,
+                builder: (context, state) => ChangeNotifierProvider(
+                  create: (context) => SessionsViewModel(
+                    sessionRepository: context.read<SessionRepository>(),
+                  ),
+                  child: const SessionsPage(),
+                ),
+                routes: [
+                  GoRoute(
+                    path: 'detail',
+                    builder: (context, state) => ChangeNotifierProvider(
+                      create: (_) => SessionDetailViewModel(
+                        session: state.extra as DoughSession,
                       ),
+                      child: const SessionDetailPage(),
                     ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -57,12 +85,12 @@ class AppRouter {
             routes: <RouteBase>[
               GoRoute(
                 path: Routes.home.toppings,
-                builder:
-                    (context, state) => ToppingsPage(
-                      viewModel: ToppingsViewModel(
-                        pizzaRepository: context.read(),
-                      ),
-                    ),
+                builder: (context, state) => ChangeNotifierProvider(
+                  create: (context) => ToppingsViewModel(
+                    pizzaRepository: context.read<PizzaRepository>(),
+                  ),
+                  child: const ToppingsPage(),
+                ),
               ),
             ],
           ),

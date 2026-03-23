@@ -1,5 +1,5 @@
 class Ingredient {
   final String name;
 
-  Ingredient({required this.name});
+  const Ingredient({required this.name});
 }
