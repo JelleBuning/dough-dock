@@ -4,8 +4,7 @@ abstract class Routes {
 
 class Home {
   String get index => '/';
-  String get explore => '/explore';
   String get dough => '/dough';
-  String get session => '/session';
+  String get toppings => '/toppings';
   String get profile => '/profile';
 }

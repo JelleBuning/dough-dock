@@ -1,17 +1,12 @@
-import 'package:dough_dock/ui/dough/enumerables/yeast_type.dart';
-import 'package:dough_dock/ui/core/models/dough.dart';
-import 'package:dough_dock/ui/core/models/yeast.dart';
+import 'package:dough_dock/core/enumerations/yeast_type.dart';
+import 'package:dough_dock/ui/dough/view_model/dough_view_model.dart';
+import 'package:dough_dock/ui/dough/models/yeast.dart';
 import 'package:flutter/material.dart';
 
 class DoughConfigurator extends StatefulWidget {
-  final DoughViewModel dough;
-  final Function(DoughViewModel) onDoughChanged;
+  final DoughViewModel viewModel;
 
-  const DoughConfigurator({
-    super.key,
-    required this.dough,
-    required this.onDoughChanged,
-  });
+  const DoughConfigurator({super.key, required this.viewModel});
 
   @override
   State<DoughConfigurator> createState() => _DoughConfiguratorState();
@@ -33,16 +28,16 @@ class _DoughConfiguratorState extends State<DoughConfigurator> {
   void initState() {
     super.initState();
     amountController = TextEditingController(
-      text: widget.dough.amount.toString(),
+      text: widget.viewModel.amount.toString(),
     );
     weightController = TextEditingController(
-      text: widget.dough.weightPerPortionG.toString(),
+      text: widget.viewModel.weightPerPortionG.toString(),
     );
     waterController = TextEditingController(
-      text: widget.dough.waterPercentage.toString(),
+      text: widget.viewModel.waterPercentage.toString(),
     );
     saltController = TextEditingController(
-      text: widget.dough.saltPercentage.toString(),
+      text: widget.viewModel.saltPercentage.toString(),
     );
   }
 
@@ -90,10 +85,7 @@ class _DoughConfiguratorState extends State<DoughConfigurator> {
                     controller: amountController,
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        setState(() {
-                          widget.dough.setAmount(int.parse(value));
-                          widget.onDoughChanged(widget.dough);
-                        });
+                        widget.viewModel.setAmount(int.parse(value));
                       }
                     },
                     decoration: InputDecoration(
@@ -111,12 +103,9 @@ class _DoughConfiguratorState extends State<DoughConfigurator> {
                   child: TextField(
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        setState(() {
-                          widget.dough.setWeightPerPortionG(
-                            double.parse(value),
-                          );
-                          widget.onDoughChanged(widget.dough);
-                        });
+                        widget.viewModel.setWeightPerPortionG(
+                          double.parse(value),
+                        );
                       }
                     },
                     controller: weightController,
@@ -140,10 +129,9 @@ class _DoughConfiguratorState extends State<DoughConfigurator> {
                   child: TextField(
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        setState(() {
-                          widget.dough.setWaterPercentage(double.parse(value));
-                          widget.onDoughChanged(widget.dough);
-                        });
+                        widget.viewModel.setWaterPercentage(
+                          double.parse(value),
+                        );
                       }
                     },
                     controller: waterController,
@@ -162,10 +150,7 @@ class _DoughConfiguratorState extends State<DoughConfigurator> {
                   child: TextField(
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        setState(() {
-                          widget.dough.setSaltPercentage(double.parse(value));
-                          widget.onDoughChanged(widget.dough);
-                        });
+                        widget.viewModel.setSaltPercentage(double.parse(value));
                       }
                     },
                     controller: saltController,
@@ -195,18 +180,14 @@ class _DoughConfiguratorState extends State<DoughConfigurator> {
                     setState(() {
                       for (int i = 0; i < yeasts.length; i++) {
                         yeasts[i].isSelected = i == index;
-
                         if (yeasts[i].selected) {
-                          setState(() {
-                            widget.dough.setYeastType(
-                              YeastType.values.firstWhere(
-                                (type) =>
-                                    type.name.toLowerCase() ==
-                                    yeasts[i].name.toLowerCase(),
-                              ),
-                            );
-                            widget.onDoughChanged(widget.dough);
-                          });
+                          widget.viewModel.setYeastType(
+                            YeastType.values.firstWhere(
+                              (type) =>
+                                  type.name.toLowerCase() ==
+                                  yeasts[i].name.toLowerCase(),
+                            ),
+                          );
                         }
                       }
                     });

@@ -1,28 +1,21 @@
 import 'package:dough_dock/utils/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key, required this.themeProvider});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
-  final ThemeProvider themeProvider;
-
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = context.watch<ThemeProvider>();
     return Scaffold(
       body: Center(
         child: Switch(
-          value: widget.themeProvider.themeMode == ThemeMode.light,
+          value: themeProvider.themeMode == ThemeMode.light,
           onChanged: (value) {
-            setState(() {
-              widget.themeProvider.setTheme(
-                value ? ThemeMode.light : ThemeMode.dark,
-              );
-            });
+            context.read<ThemeProvider>().setTheme(
+              value ? ThemeMode.light : ThemeMode.dark,
+            );
           },
         ),
       ),

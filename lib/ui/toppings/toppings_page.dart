@@ -1,18 +1,18 @@
-import 'package:dough_dock/domain/models/ingredient.dart';
-import 'package:dough_dock/domain/models/pizza.dart';
-import 'package:dough_dock/ui/session/view_model/session_view_model.dart';
+import 'package:dough_dock/core/models/ingredient.dart';
+import 'package:dough_dock/core/models/pizza.dart';
+import 'package:dough_dock/ui/toppings/view_model/toppings_view_model.dart';
 import 'package:flutter/material.dart';
 
-class SessionPage extends StatefulWidget {
-  const SessionPage({super.key, required this.viewModel});
+class ToppingsPage extends StatefulWidget {
+  const ToppingsPage({super.key, required this.viewModel});
 
-  final SessionViewModel viewModel;
+  final ToppingsViewModel viewModel;
 
   @override
-  State<SessionPage> createState() => _SessionPageState();
+  State<ToppingsPage> createState() => _ToppingsPageState();
 }
 
-class _SessionPageState extends State<SessionPage> {
+class _ToppingsPageState extends State<ToppingsPage> {
   @override
   void initState() {
     super.initState();
@@ -176,7 +176,7 @@ class _SessionPageState extends State<SessionPage> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
         spacing: 5,
-        mainAxisSize: MainAxisSize.min, // Shrinks the row to fit its content
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(ingredient.name),
           InkWell(

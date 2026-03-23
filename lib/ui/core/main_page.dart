@@ -16,12 +16,6 @@ class _MainPageState extends State<MainPage> {
   var toolbarHeight = 75.0;
   var destinations = [
     Destination(
-      icon: Icon(Icons.explore_outlined),
-      selectedIcon: Icon(Icons.explore_rounded),
-      label: "Explore",
-      route: Routes.home.explore,
-    ),
-    Destination(
       icon: Icon(Icons.calendar_month_outlined),
       selectedIcon: Icon(Icons.calendar_month_rounded),
       label: "Dough",
@@ -30,8 +24,8 @@ class _MainPageState extends State<MainPage> {
     Destination(
       icon: Icon(Icons.local_pizza_outlined),
       selectedIcon: Icon(Icons.local_pizza_rounded),
-      label: "Session",
-      route: Routes.home.session,
+      label: "Toppings",
+      route: Routes.home.toppings,
     ),
     Destination(
       icon: Icon(Icons.person_outline_rounded),

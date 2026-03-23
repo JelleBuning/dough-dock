@@ -1,10 +1,10 @@
-import 'package:dough_dock/ui/core/models/dough.dart';
+import 'package:dough_dock/ui/dough/view_model/dough_view_model.dart';
 import 'package:flutter/material.dart';
 
 class Doses extends StatelessWidget {
-  final DoughViewModel dough;
+  final DoughViewModel viewModel;
 
-  const Doses({super.key, required this.dough});
+  const Doses({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +19,14 @@ class Doses extends StatelessWidget {
             Expanded(
               child: _DoseCard(
                 title: 'Flour',
-                amount: dough.getTotalFlour(),
+                amount: viewModel.getTotalFlour(),
                 unit: 'g',
               ),
             ),
             Expanded(
               child: _DoseCard(
                 title: 'Water',
-                amount: dough.getTotalWater(),
+                amount: viewModel.getTotalWater(),
                 unit: 'g',
               ),
             ),
@@ -38,7 +38,7 @@ class Doses extends StatelessWidget {
             Expanded(
               child: _DoseCard(
                 title: 'Salt',
-                amount: dough.getTotalSalt(),
+                amount: viewModel.getTotalSalt(),
                 unit: 'g',
                 behindComma: 1,
               ),
@@ -46,7 +46,7 @@ class Doses extends StatelessWidget {
             Expanded(
               child: _DoseCard(
                 title: 'Yeast',
-                amount: dough.getTotalYeast(),
+                amount: viewModel.getTotalYeast(),
                 unit: 'g',
                 behindComma: 2,
               ),

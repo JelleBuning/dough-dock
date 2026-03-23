@@ -1,5 +1,5 @@
-import 'package:dough_dock/domain/models/ingredient.dart';
-import 'package:dough_dock/domain/models/pizza.dart';
+import 'package:dough_dock/core/models/ingredient.dart';
+import 'package:dough_dock/core/models/pizza.dart';
 
 class PizzaRepository {
   List<Pizza> fetchPizzas() {
