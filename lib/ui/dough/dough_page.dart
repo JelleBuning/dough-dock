@@ -70,7 +70,7 @@ class _DoughPageState extends State<DoughPage> {
         onPressed: () async {
           final session = await context.read<DoughViewModel>().saveSession();
           if (context.mounted) {
-            context.go(Routes.home.sessionDetail, extra: session);
+            context.go(Routes.home.sessionDetail(session.id));
           }
         },
         child: const Icon(Icons.add_rounded),

@@ -34,7 +34,7 @@ class SessionsPage extends StatelessWidget {
                   final session = sessions[index];
                   return _SessionCard(
                     session: session,
-                    onTap: () => context.go(Routes.home.sessionDetail, extra: session),
+                    onTap: () => context.go(Routes.home.sessionDetail(session.id)),
                     onDismissed: () => context.read<SessionsViewModel>().removeSession(session),
                   );
                 },

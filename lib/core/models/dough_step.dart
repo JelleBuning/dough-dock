@@ -1,6 +1,11 @@
 class DoughStep {
+  const DoughStep({
+    required this.name,
+    required this.time,
+    this.description = '',
+  });
+
   final String name;
   final DateTime time;
-
-  DoughStep({required this.name, required this.time});
+  final String description;
 }

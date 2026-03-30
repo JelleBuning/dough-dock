@@ -8,16 +8,16 @@ import 'package:flutter/material.dart';
 
 class DoughViewModel extends ChangeNotifier {
   DoughViewModel({
-    required int amount,
-    required double rtLeaveningHours,
-    required double rtTemperatureCelsius,
-    required YeastType yeastType,
+    int amount = DoughConfig.defaultAmount,
+    double rtLeaveningHours = DoughConfig.defaultRtLeaveningHours,
+    double rtTemperatureCelsius = DoughConfig.defaultRtTemperatureCelsius,
+    YeastType yeastType = DoughConfig.defaultYeastType,
+    double weightPerPortionG = DoughConfig.defaultWeightPerPortionG,
+    double waterPercentage = DoughConfig.defaultWaterPercentage,
+    double saltPercentage = DoughConfig.defaultSaltPercentage,
     required SessionRepository sessionRepository,
     required DoughCalculator calculator,
     required DoughPlanner planner,
-    double weightPerPortionG = 250.0,
-    double waterPercentage = 61.0,
-    double saltPercentage = 2.6,
   })  : assert(amount > 0, 'amount must be > 0'),
         assert(rtLeaveningHours > 0, 'rtLeaveningHours must be > 0'),
         assert(weightPerPortionG > 0, 'weightPerPortionG must be > 0'),
@@ -74,6 +74,7 @@ class DoughViewModel extends ChangeNotifier {
 
   Future<DoughSession> saveSession() async {
     final session = _planner.createSession(
+      id: _sessionRepository.nextId(),
       config: _config,
       bakeTime: _bakeTime ?? DateTime.now().add(Duration(hours: _rtLeaveningHours.round())),
     );

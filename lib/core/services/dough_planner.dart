@@ -6,6 +6,7 @@ class DoughPlanner {
   const DoughPlanner();
 
   DoughSession createSession({
+    required int id,
     required DoughConfig config,
     required DateTime bakeTime,
   }) {
@@ -16,15 +17,29 @@ class DoughPlanner {
     );
 
     return DoughSession(
+      id: id,
       createdAt: DateTime.now(),
       config: config,
       bakeTime: bakeTime,
       steps: [
-        DoughStep(name: 'Mix dough', time: startTime),
-        DoughStep(name: 'Start bulk fermentation', time: startTime),
-        DoughStep(name: 'Divide & ball dough', time: bulkEnd),
-        DoughStep(name: 'Final proof (dough balls)', time: bulkEnd),
-        DoughStep(name: 'Bake', time: bakeTime),
+        DoughStep(
+          name: 'Mix & bulk ferment',
+          time: startTime,
+          description:
+              'Combine flour, water, salt and yeast. Mix until smooth, then cover and leave to ferment at room temperature.',
+        ),
+        DoughStep(
+          name: 'Divide & shape',
+          time: bulkEnd,
+          description:
+              'Divide the dough into equal portions and shape into tight balls.',
+        ),
+        DoughStep(
+          name: 'Final proof',
+          time: bulkEnd,
+          description:
+              'Place the dough balls in proofing containers, cover and let them rest until ready to stretch.',
+        ),
       ],
     );
   }

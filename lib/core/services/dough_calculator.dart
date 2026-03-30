@@ -5,7 +5,6 @@ import 'package:dough_dock/core/models/dough_config.dart';
 class DoughCalculator {
   const DoughCalculator();
 
-  static const double _targetDoughBallWeight = 250.0;
   static const double _yeastConstant = 0.025;
 
   double totalFlour(DoughConfig config) {
@@ -13,13 +12,13 @@ class DoughCalculator {
     final double saltDecimal = config.saltPercentage / 100.0;
 
     final double flourPerBall =
-        _targetDoughBallWeight / (1.0 + waterDecimal + saltDecimal);
+        config.weightPerPortionG / (1.0 + waterDecimal + saltDecimal);
 
     return flourPerBall * config.amount;
   }
 
   double totalDough(DoughConfig config) =>
-      _targetDoughBallWeight * config.amount;
+      config.weightPerPortionG * config.amount;
 
   double totalWater(DoughConfig config) {
     return totalFlour(config) * (config.waterPercentage / 100.0);

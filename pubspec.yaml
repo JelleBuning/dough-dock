@@ -39,6 +39,8 @@ dependencies:
   go_router: ^17.1.0
   intl: ^0.20.2
   http: ^1.6.0
+  flutter_local_notifications: ^20.1.0
+  timezone: ^0.10.1
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.4

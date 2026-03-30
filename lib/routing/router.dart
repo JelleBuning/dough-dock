@@ -1,5 +1,3 @@
-import 'package:dough_dock/core/models/dough_session.dart';
-import 'package:dough_dock/core/enumerations/yeast_type.dart';
 import 'package:dough_dock/core/repositories/pizza_repository.dart';
 import 'package:dough_dock/core/repositories/session_repository.dart';
 import 'package:dough_dock/core/services/dough_calculator.dart';
@@ -44,10 +42,6 @@ class AppRouter {
                 path: Routes.home.dough,
                 builder: (context, state) => ChangeNotifierProvider(
                   create: (context) => DoughViewModel(
-                    amount: 4,
-                    yeastType: YeastType.fresh,
-                    rtLeaveningHours: 24,
-                    rtTemperatureCelsius: 20,
                     sessionRepository: context.read<SessionRepository>(),
                     calculator: context.read<DoughCalculator>(),
                     planner: context.read<DoughPlanner>(),
@@ -69,13 +63,18 @@ class AppRouter {
                 ),
                 routes: [
                   GoRoute(
-                    path: 'detail',
-                    builder: (context, state) => ChangeNotifierProvider(
-                      create: (_) => SessionDetailViewModel(
-                        session: state.extra as DoughSession,
-                      ),
-                      child: const SessionDetailPage(),
-                    ),
+                    path: Routes.home.sessionDetailPath,
+                    builder: (context, state) {
+                      final id = int.parse(state.pathParameters['id']!);
+                      final session = context.read<SessionRepository>().getById(id)!;
+                      return ChangeNotifierProvider(
+                        create: (context) => SessionDetailViewModel(
+                          session: session,
+                          calculator: context.read<DoughCalculator>(),
+                        ),
+                        child: const SessionDetailPage(),
+                      );
+                    },
                   ),
                 ],
               ),

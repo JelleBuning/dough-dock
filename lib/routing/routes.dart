@@ -7,6 +7,7 @@ class Home {
   String get dough => '/dough';
   String get toppings => '/toppings';
   String get sessions => '/sessions';
-  String get sessionDetail => '/sessions/detail';
+  String get sessionDetailPath => ':id';
+  String sessionDetail(int id) => '/sessions/$id';
   String get profile => '/profile';
 }
