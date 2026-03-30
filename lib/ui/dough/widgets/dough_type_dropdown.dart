@@ -1,4 +1,4 @@
-import 'package:dough_dock/ui/dough/enumerables/dough_type.dart';
+import 'package:dough_dock/ui/dough/enums/dough_type.dart';
 import 'package:flutter/material.dart';
 
 class DoughTypeDropdown extends StatefulWidget {

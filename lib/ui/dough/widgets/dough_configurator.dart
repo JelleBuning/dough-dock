@@ -1,62 +1,69 @@
-import 'package:dough_dock/ui/dough/enumerables/yeast_type.dart';
-import 'package:dough_dock/ui/core/models/dough.dart';
-import 'package:dough_dock/ui/core/models/yeast.dart';
+import 'package:dough_dock/core/enumerations/yeast_type.dart';
+import 'package:dough_dock/ui/dough/models/yeast.dart';
+import 'package:dough_dock/ui/dough/view_model/dough_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DoughConfigurator extends StatefulWidget {
-  final DoughViewModel dough;
-  final Function(DoughViewModel) onDoughChanged;
-
-  const DoughConfigurator({
-    super.key,
-    required this.dough,
-    required this.onDoughChanged,
-  });
+  const DoughConfigurator({super.key});
 
   @override
   State<DoughConfigurator> createState() => _DoughConfiguratorState();
 }
 
 class _DoughConfiguratorState extends State<DoughConfigurator> {
-  List<Yeast> yeasts = <Yeast>[
+  final List<Yeast> _yeasts = [
     Yeast(name: 'Fresh', selected: true),
-    Yeast(name: 'Dry'),
-    Yeast(name: 'Sourdough'),
+    Yeast(name: 'Active Dry'),
+    Yeast(name: 'Instant'),
   ];
 
-  late TextEditingController amountController;
-  late TextEditingController weightController;
-  late TextEditingController waterController;
-  late TextEditingController saltController;
+  late TextEditingController _amountController;
+  late TextEditingController _weightController;
+  late TextEditingController _waterController;
+  late TextEditingController _saltController;
+  late TextEditingController _leaveningController;
+  late TextEditingController _temperatureController;
 
   @override
   void initState() {
     super.initState();
-    amountController = TextEditingController(
-      text: widget.dough.amount.toString(),
+    final viewModel = context.read<DoughViewModel>();
+    _amountController = TextEditingController(
+      text: viewModel.amount.toString(),
     );
-    weightController = TextEditingController(
-      text: widget.dough.weightPerPortionG.toString(),
+    _weightController = TextEditingController(
+      text: viewModel.weightPerPortionG.toString(),
     );
-    waterController = TextEditingController(
-      text: widget.dough.waterPercentage.toString(),
+    _waterController = TextEditingController(
+      text: viewModel.waterPercentage.toString(),
     );
-    saltController = TextEditingController(
-      text: widget.dough.saltPercentage.toString(),
+    _saltController = TextEditingController(
+      text: viewModel.saltPercentage.toString(),
+    );
+    _leaveningController = TextEditingController(
+      text: viewModel.rtLeaveningHours.toString(),
+    );
+    _temperatureController = TextEditingController(
+      text: viewModel.rtTemperatureCelsius.toString(),
     );
   }
 
   @override
   void dispose() {
-    amountController.dispose();
-    weightController.dispose();
-    waterController.dispose();
-    saltController.dispose();
+    _amountController.dispose();
+    _weightController.dispose();
+    _waterController.dispose();
+    _saltController.dispose();
+    _leaveningController.dispose();
+    _temperatureController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<DoughViewModel>();
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(10),
@@ -87,19 +94,17 @@ class _DoughConfiguratorState extends State<DoughConfigurator> {
                 Expanded(
                   flex: 2,
                   child: TextField(
-                    controller: amountController,
+                    controller: _amountController,
+                    keyboardType: TextInputType.number,
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        setState(() {
-                          widget.dough.setAmount(int.parse(value));
-                          widget.onDoughChanged(widget.dough);
-                        });
+                        viewModel.setAmount(int.parse(value));
                       }
                     },
-                    decoration: InputDecoration(
-                      labelText: 'Amount',
+                    decoration: const InputDecoration(
+                      labelText: 'Pizzas',
                       border: OutlineInputBorder(),
-                      contentPadding: const EdgeInsets.symmetric(
+                      contentPadding: EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 0,
                       ),
@@ -109,22 +114,18 @@ class _DoughConfiguratorState extends State<DoughConfigurator> {
                 Expanded(
                   flex: 3,
                   child: TextField(
+                    controller: _weightController,
+                    keyboardType: TextInputType.number,
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        setState(() {
-                          widget.dough.setWeightPerPortionG(
-                            double.parse(value),
-                          );
-                          widget.onDoughChanged(widget.dough);
-                        });
+                        viewModel.setWeightPerPortionG(double.parse(value));
                       }
                     },
-                    controller: weightController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Weight',
                       suffixText: 'g',
                       border: OutlineInputBorder(),
-                      contentPadding: const EdgeInsets.symmetric(
+                      contentPadding: EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 0,
                       ),
@@ -138,20 +139,18 @@ class _DoughConfiguratorState extends State<DoughConfigurator> {
               children: [
                 Expanded(
                   child: TextField(
+                    controller: _waterController,
+                    keyboardType: TextInputType.number,
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        setState(() {
-                          widget.dough.setWaterPercentage(double.parse(value));
-                          widget.onDoughChanged(widget.dough);
-                        });
+                        viewModel.setWaterPercentage(double.parse(value));
                       }
                     },
-                    controller: waterController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Water',
                       suffixText: '%',
                       border: OutlineInputBorder(),
-                      contentPadding: const EdgeInsets.symmetric(
+                      contentPadding: EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 0,
                       ),
@@ -160,25 +159,80 @@ class _DoughConfiguratorState extends State<DoughConfigurator> {
                 ),
                 Expanded(
                   child: TextField(
+                    controller: _saltController,
+                    keyboardType: TextInputType.number,
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        setState(() {
-                          widget.dough.setSaltPercentage(double.parse(value));
-                          widget.onDoughChanged(widget.dough);
-                        });
+                        viewModel.setSaltPercentage(double.parse(value));
                       }
                     },
-                    controller: saltController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Salt',
                       suffixText: '%',
                       border: OutlineInputBorder(),
-                      contentPadding: const EdgeInsets.symmetric(
+                      contentPadding: EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 0,
                       ),
                     ),
                   ),
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 10,
+              children: [
+                Text(
+                  'Fermentation',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                Row(
+                  spacing: 10,
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _leaveningController,
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) {
+                          if (value.isNotEmpty) {
+                            viewModel.setRtLeaveningHours(double.parse(value));
+                          }
+                        },
+                        decoration: const InputDecoration(
+                          labelText: 'Duration',
+                          suffixText: 'h',
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 0,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: TextField(
+                        controller: _temperatureController,
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) {
+                          if (value.isNotEmpty) {
+                            viewModel.setRtTemperatureCelsius(
+                              double.parse(value),
+                            );
+                          }
+                        },
+                        decoration: const InputDecoration(
+                          labelText: 'Temp',
+                          suffixText: '°C',
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -193,35 +247,27 @@ class _DoughConfiguratorState extends State<DoughConfigurator> {
                   direction: Axis.horizontal,
                   onPressed: (int index) {
                     setState(() {
-                      for (int i = 0; i < yeasts.length; i++) {
-                        yeasts[i].isSelected = i == index;
-
-                        if (yeasts[i].selected) {
-                          setState(() {
-                            widget.dough.setYeastType(
-                              YeastType.values.firstWhere(
-                                (type) =>
-                                    type.name.toLowerCase() ==
-                                    yeasts[i].name.toLowerCase(),
-                              ),
-                            );
-                            widget.onDoughChanged(widget.dough);
-                          });
-                        }
+                      for (int i = 0; i < _yeasts.length; i++) {
+                        _yeasts[i].isSelected = i == index;
                       }
+                      viewModel.setYeastType(YeastType.values[index]);
                     });
                   },
                   constraints: const BoxConstraints(minHeight: 30.0),
-                  isSelected: yeasts.map((yeast) => yeast.selected).toList(),
+                  isSelected: _yeasts.map((y) => y.selected).toList(),
                   children:
-                      yeasts.map((yeast) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Text(yeast.name),
-                        );
-                      }).toList(),
+                      _yeasts
+                          .map(
+                            (y) => Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                              ),
+                              child: Text(y.name),
+                            ),
+                          )
+                          .toList(),
                 ),
-                SizedBox.shrink(),
+                const SizedBox.shrink(),
               ],
             ),
           ],

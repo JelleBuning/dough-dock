@@ -90,12 +90,13 @@ class _PrefermentRadioCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(title),
-              Radio(
-                value: true,
-                groupValue: isSelected,
-                onChanged: (value) {
-                  onSelected();
-                },
+              Icon(
+                isSelected
+                    ? Icons.radio_button_checked
+                    : Icons.radio_button_unchecked,
+                color: isSelected
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ],
           ),

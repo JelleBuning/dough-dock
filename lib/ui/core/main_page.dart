@@ -12,15 +12,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  var pageIndex = 0;
-  var toolbarHeight = 75.0;
-  var destinations = [
-    Destination(
-      icon: Icon(Icons.explore_outlined),
-      selectedIcon: Icon(Icons.explore_rounded),
-      label: "Explore",
-      route: Routes.home.explore,
-    ),
+  static const _toolbarHeight = 75.0;
+  final _destinations = [
     Destination(
       icon: Icon(Icons.calendar_month_outlined),
       selectedIcon: Icon(Icons.calendar_month_rounded),
@@ -28,10 +21,16 @@ class _MainPageState extends State<MainPage> {
       route: Routes.home.dough,
     ),
     Destination(
+      icon: Icon(Icons.history_outlined),
+      selectedIcon: Icon(Icons.history_rounded),
+      label: "Sessions",
+      route: Routes.home.sessions,
+    ),
+    Destination(
       icon: Icon(Icons.local_pizza_outlined),
       selectedIcon: Icon(Icons.local_pizza_rounded),
-      label: "Session",
-      route: Routes.home.session,
+      label: "Toppings",
+      route: Routes.home.toppings,
     ),
     Destination(
       icon: Icon(Icons.person_outline_rounded),
@@ -42,13 +41,8 @@ class _MainPageState extends State<MainPage> {
   ];
 
   @override
-  void initState() {
-    pageIndex = widget.navigationShell.currentIndex;
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final pageIndex = widget.navigationShell.currentIndex;
     final screenWidth = MediaQuery.of(context).size.width;
     final isMobile = screenWidth < 600;
 
@@ -57,28 +51,13 @@ class _MainPageState extends State<MainPage> {
         children: [
           if (!isMobile)
             Padding(
-              padding: EdgeInsets.only(top: toolbarHeight),
+              padding: const EdgeInsets.only(top: _toolbarHeight),
               child: NavigationRail(
                 labelType: NavigationRailLabelType.all,
-                onDestinationSelected:
-                    (int index) => {
-                      pageIndex = index,
-                      context.go(destinations[pageIndex].route),
-                    },
+                onDestinationSelected: (int index) => context.go(_destinations[index].route),
                 groupAlignment: -0.25,
-                leading: SizedBox(
-                  height: 56,
-                  width: 56,
-                  child:
-                      !isMobile
-                          ? _buildFab(
-                            destinations[pageIndex].fabIcon,
-                            destinations[pageIndex].fabPressed,
-                          )
-                          : null,
-                ),
                 destinations:
-                    destinations.map((destination) {
+                    _destinations.map((destination) {
                       return NavigationRailDestination(
                         icon: destination.icon,
                         selectedIcon: destination.selectedIcon,
@@ -88,27 +67,14 @@ class _MainPageState extends State<MainPage> {
                 selectedIndex: pageIndex,
               ),
             ),
-          Expanded(
-            child: Scaffold(
-              body: widget.navigationShell, // Use the navigation shell here
-              floatingActionButton:
-                  isMobile
-                      ? _buildFab(
-                        destinations[pageIndex].fabIcon,
-                        destinations[pageIndex].fabPressed,
-                      )
-                      : null,
-              floatingActionButtonAnimator:
-                  FloatingActionButtonAnimator.noAnimation,
-            ),
-          ),
+          Expanded(child: Scaffold(body: widget.navigationShell)),
         ],
       ),
       bottomNavigationBar:
           isMobile
               ? NavigationBar(
                 destinations:
-                    destinations.map((destination) {
+                    _destinations.map((destination) {
                       return NavigationDestination(
                         icon: destination.icon,
                         selectedIcon: destination.selectedIcon,
@@ -116,21 +82,9 @@ class _MainPageState extends State<MainPage> {
                       );
                     }).toList(),
                 selectedIndex: pageIndex,
-                onDestinationSelected:
-                    (int index) => {
-                      pageIndex = index,
-                      context.go(destinations[pageIndex].route),
-                    },
+                onDestinationSelected: (int index) => context.go(_destinations[index].route),
               )
               : null,
-    );
-  }
-
-  Widget _buildFab(Icon? icon, void Function()? onPressed) {
-    return AnimatedOpacity(
-      opacity: onPressed != null ? 1.0 : 0.0,
-      duration: const Duration(milliseconds: 200),
-      child: FloatingActionButton(onPressed: onPressed, child: icon),
     );
   }
 }

@@ -1,13 +1,14 @@
-import 'package:dough_dock/ui/core/models/dough.dart';
+import 'package:dough_dock/ui/dough/view_model/dough_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Doses extends StatelessWidget {
-  final DoughViewModel dough;
-
-  const Doses({super.key, required this.dough});
+  const Doses({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<DoughViewModel>();
+
     return Column(
       spacing: 10,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -16,20 +17,8 @@ class Doses extends StatelessWidget {
         Row(
           spacing: 10,
           children: [
-            Expanded(
-              child: _DoseCard(
-                title: 'Flour',
-                amount: dough.getTotalFlour(),
-                unit: 'g',
-              ),
-            ),
-            Expanded(
-              child: _DoseCard(
-                title: 'Water',
-                amount: dough.getTotalWater(),
-                unit: 'g',
-              ),
-            ),
+            Expanded(child: _DoseCard(title: 'Flour', amount: viewModel.getTotalFlour(), unit: 'g')),
+            Expanded(child: _DoseCard(title: 'Water', amount: viewModel.getTotalWater(), unit: 'g')),
           ],
         ),
         Row(
@@ -38,7 +27,7 @@ class Doses extends StatelessWidget {
             Expanded(
               child: _DoseCard(
                 title: 'Salt',
-                amount: dough.getTotalSalt(),
+                amount: viewModel.getTotalSalt(),
                 unit: 'g',
                 behindComma: 1,
               ),
@@ -46,7 +35,7 @@ class Doses extends StatelessWidget {
             Expanded(
               child: _DoseCard(
                 title: 'Yeast',
-                amount: dough.getTotalYeast(),
+                amount: viewModel.getTotalYeast(),
                 unit: 'g',
                 behindComma: 2,
               ),
@@ -59,17 +48,17 @@ class Doses extends StatelessWidget {
 }
 
 class _DoseCard extends StatelessWidget {
-  final String title;
-  final double amount;
-  final String unit;
-  final int behindComma;
-
   const _DoseCard({
     required this.title,
     required this.amount,
     required this.unit,
     this.behindComma = 0,
   });
+
+  final String title;
+  final double amount;
+  final String unit;
+  final int behindComma;
 
   @override
   Widget build(BuildContext context) {
